@@ -16,6 +16,7 @@ class AuthUsersController < ApplicationController
 
   def new
     @auth_user = AuthUser.new
+    @auth_user.auth_user_detail = AuthUserDetail.new
   end
 
   def create
@@ -33,11 +34,12 @@ class AuthUsersController < ApplicationController
     }    
 
     @auth_user = AuthUser.new(user_params)
+    @auth_user.auth_user_detail = AuthUserDetail.new(user_params[:auth_user_detail_attributes])
 
     if @auth_user.save
       flash[:success] = "User created successfully"
       redirect_to action: "index"
-    else
+    else      
       render 'new'
     end
 

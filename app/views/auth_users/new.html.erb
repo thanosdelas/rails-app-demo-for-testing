@@ -13,7 +13,9 @@
       <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
       <!-- Find out why the following two work -->
-      <%= f.fields_for :auth_user_detail, AuthUserDetail.new do |details| %>
+      <%#= f.fields_for :auth_user_detail, AuthUserDetail.new do |details| %>
+      <!-- Initialization of user details moved inside controller new -->
+      <%= f.fields_for :auth_user_detail do |details| %>
       <%#= f.fields_for :auth_user_detail_attributes do |details| %>
 
         <div >
