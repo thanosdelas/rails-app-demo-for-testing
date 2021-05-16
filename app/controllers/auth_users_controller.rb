@@ -31,6 +31,28 @@ class AuthUsersController < ApplicationController
 
   end
 
+  def generate_users
+    users = AuthUser.all()
+    users.destroy_all()
+
+    14.times { |i| 
+
+      user_email = "user#{i}@example.com"
+      user_passowrd = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+
+      user = AuthUser.new("email": user_email, "password_digest": user_passowrd)
+      if !user.save()
+        flash[:danger] = "Could not generate users: "+user.errors.messages.inspect+user.errors.full_messages.inspect
+        return redirect_to action: "index"
+      end
+    }
+
+    flash[:success] = "Users created successfully"
+
+    return redirect_to action: "index"
+
+  end
+
   private def user_params
     params.require(:auth_user).permit(:email, :passowrd)
   end

@@ -1,7 +1,15 @@
 <h2>Users</h2>
 
-<% @auth_users.each do |auth_user| %>
-  <div>
-    <%= auth_user.email%>
-  </div>
-<% end %>
+<a href="<%= new_user_path%>" class="btn btn-sm btn-success my-2">Create User</a>
+<a href="<%= generate_users_path%>" class="btn btn-sm btn-warning my-2">Generate Dummy Users</a>
+
+<div class="listing">
+	<ul>
+		<% @auth_users.each do |auth_user| %>
+		  <li>
+		    <%= auth_user.email%>
+		  </li>
+	  <% end %>
+	</ul>
+</div>
+

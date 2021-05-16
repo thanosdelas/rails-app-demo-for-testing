@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   # post "/auth/users", to: "auth_users#create"
 
   get 'auth/users', to: 'auth_users#index'
-  get 'auth/users/new', to: 'auth_users#new', as: :new_auth_user
+  get 'auth/users/generate', to: 'auth_users#generate_users', as: :generate_users
+  get 'auth/users/new', to: 'auth_users#new', as: :new_user
   post 'auth/users', to: 'auth_users#create'
   get 'auth/users/:id', to: 'auth_users#show', as: :auth_user
   patch 'auth/users/:id', to: 'auth_users#update'
