@@ -1,0 +1,23 @@
+<a href="<%= products_path%>" class="btn btn-sm btn-primary mt-2">All Products</a>
+
+<br>
+
+<div>
+	<h2><%= @product.name%></h2>
+</div>
+
+<hr />
+
+<h6>Product Description</h6>
+<div>
+	<%= @product.description %>
+</div>
+
+<br /><br /><br />
+
+<hr />
+
+<div>
+	<%= link_to "Edit", edit_product_path(@product), class: "btn btn-sm btn-warning" %>
+	<%= link_to "Delete", product_path(@product), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>

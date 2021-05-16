@@ -1,0 +1,12 @@
+<% if @auth_user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      Errors: <%= pluralize(@auth_user.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @auth_user.errors.full_messages.each do |msg| %>
+      <li class='text-danger'><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

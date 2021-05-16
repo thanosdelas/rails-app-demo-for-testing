@@ -1,0 +1,26 @@
+<h3>Ruby On Rails Development App</h3>
+<small><%= @domain %></small>
+
+<pre>
+[*] Notes
+
+- This is a ruby on rails application for learning, testing & development
+- It is meant to be used as a reference for various conventions and configuration
+- Built using Rails 6.0.3.4
+- Configured with mysql
+
+- To conncet to PostgreSQL from terminal use 
+  #
+  # sudo -u postgres psql
+  # \l
+  # \c railsapp_development
+  # \dt
+  #
+
+- To render text from controller use:
+  # return render plain: text
+  # return render plain: @products.inspect
+
+- To render JSON from controller use:
+  # return render json: @products
+</pre>
