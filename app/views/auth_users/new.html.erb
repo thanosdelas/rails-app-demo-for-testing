@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Create User</h2>
 
 <div class="row">
 
@@ -9,11 +9,24 @@
       <%= f.label :email %>
       <%= f.text_field :email, class: 'mb-1 form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'mb-1 form-control' %>
+      <%= f.label :password_digest %>
+      <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
+      <%#
       <%= f.label :password_confirmation, "Confirmation" %>
+      <%#
       <%= f.password_field :password_confirmation, class: 'mb-1 form-control' %>
+
+      <% f.fields_for :auth_user_detail do |details| %>
+        <div >
+          <%= details.label :firstname %>
+          <%= details.text_field :firstname %>
+        </div>
+        <div >
+          <%= details.label :lastname %>
+          <%= details.text_field :lastname %>
+        </div>
+      <% end %>
 
       <%= f.submit "Create User", class: "mt-2 btn btn-primary" %>
     <% end %>

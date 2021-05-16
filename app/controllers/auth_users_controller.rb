@@ -20,7 +20,20 @@ class AuthUsersController < ApplicationController
 
   def create
 
-    @auth_user = AuthUser.new(user_params)
+    # return render plain: params.inspect
+    # return render plain: user_params.inspect
+
+    # This one works
+    params = {
+      email: "delasthanos@gmail.com",
+      password_digest: "delasthanos@gmail.com",
+      auth_user_detail_attributes: {
+        firstname: "thanos",
+        lastname: "delas"
+      }
+    }
+
+    @auth_user = AuthUser.new(params)
 
     if @auth_user.save
       flash[:success] = "User created successfully"
@@ -54,7 +67,13 @@ class AuthUsersController < ApplicationController
   end
 
   private def user_params
-    params.require(:auth_user).permit(:email, :passowrd)
+
+    # params.require(:auth_user).permit(:email, :password_digest)
+    params.require(:auth_user).permit(
+      :email,
+      :password_digest,
+      auth_user_detail_attributes: [:firstname, :lastname]
+    )
   end
 
 end

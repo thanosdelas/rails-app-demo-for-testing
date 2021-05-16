@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_15_080019) do
+ActiveRecord::Schema.define(version: 2021_05_16_144049) do
+
+  create_table "auth_user_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "phone"
+    t.string "address"
+    t.bigint "auth_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auth_user_id"], name: "index_auth_user_details_on_auth_user_id"
+  end
 
   create_table "auth_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email"
@@ -26,4 +37,5 @@ ActiveRecord::Schema.define(version: 2021_05_15_080019) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "auth_user_details", "auth_users"
 end
