@@ -3,9 +3,6 @@ class CreateAuthUsers < ActiveRecord::Migration[6.0]
     create_table :auth_users do |t|
       t.string :email
       t.string :password_digest
-      t.string :name
-      t.string :phone
-      t.string :address
 
       t.timestamps
     end
