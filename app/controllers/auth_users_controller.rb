@@ -20,10 +20,8 @@ class AuthUsersController < ApplicationController
 
   def create
 
-    # return render plain: params.inspect
-
     #
-    # Passing this object instead of user_params populates both tables
+    # Passing this hardcoded object instead of user_params populates both tables
     #
     params = {
       email: "delasthanos@gmail.com",

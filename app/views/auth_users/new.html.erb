@@ -12,8 +12,10 @@
       <%= f.label :password_digest %>
       <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
-      <%#= fields_for :auth_user_details_attributes, AuthUserDetail.new do |details| %>
-      <%= f.fields_for :auth_user_detail_attributes do |details| %>
+      <!-- Find out why the following two work -->
+      <%= f.fields_for :auth_user_detail, AuthUserDetail.new do |details| %>
+      <%#= f.fields_for :auth_user_detail_attributes do |details| %>
+
         <div >
           <%= details.label :firstname %>
           <%= details.text_field :firstname %>

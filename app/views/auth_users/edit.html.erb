@@ -12,7 +12,7 @@
       <%= f.label :password_digest %>
       <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
-      <%= fields_for :auth_user_details, AuthUserDetail.new do |details| %>
+      <%= f.fields_for :auth_user_details do |details| %>
       <%# fields_for :auth_user_details do |details| %>
         <div >
           <%= details.label :firstname %>
