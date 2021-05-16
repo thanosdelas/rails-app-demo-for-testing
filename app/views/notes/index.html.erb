@@ -17,3 +17,33 @@ gem install rails --no-ri --no-rdoc
  - or
 gem install rails --no-document # or -N in short
 </pre>
+
+<h3>Database</h3>
+
+Change postgreSQL to MySQL
+<pre>
+rails db:system:change --to=mysql
+sudo apt-get install libmysqlclient-dev
+bundle isntall
+</pre>
+
+<hr />
+
+Migrate Database
+<pre>rails db:migrate</pre>
+
+<hr />
+
+All data will be lost using the following:
+
+This will reset your database and reload your current schema with all:
+<pre>rake db:reset db:migrate</pre>
+
+This will destroy your db and then create it and then migrate your current schema:
+<pre>rake db:drop db:create db:migrate</pre>
+
+<hr />
+
+Generate model and mihration from command line: 
+<pre>rails generate model Product name:string</pre>
+<pre>rails generate migration AddPriceToProducts price:decimal</pre>
