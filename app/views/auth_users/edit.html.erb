@@ -1,10 +1,10 @@
-<h2>Create User</h2>
+<h2>Edit User</h2>
 
 <div class="row">
 
   <div class="col-md-6">
     <%= form_with(model: @auth_user, local: true) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%#= render 'shared/error_messages' %>
 
       <%= f.label :email %>
       <%= f.text_field :email, class: 'mb-1 form-control' %>
@@ -12,8 +12,8 @@
       <%= f.label :password_digest %>
       <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
-      <%#= fields_for :auth_user_details_attributes, AuthUserDetail.new do |details| %>
-      <%= f.fields_for :auth_user_detail_attributes do |details| %>
+      <%= fields_for :auth_user_details, AuthUserDetail.new do |details| %>
+      <%# fields_for :auth_user_details do |details| %>
         <div >
           <%= details.label :firstname %>
           <%= details.text_field :firstname %>
@@ -24,7 +24,7 @@
         </div>
       <% end %>
 
-      <%= f.submit "Create User", class: "mt-2 btn btn-primary" %>
+      <%= f.submit "Update User", class: "mt-2 btn btn-primary" %>
     <% end %>
   </div>
   

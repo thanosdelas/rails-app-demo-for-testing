@@ -11,7 +11,7 @@ class AuthUsersController < ApplicationController
   end
 
   def show
-    @user = AuthUser.find(params[:id])
+    @auth_user = AuthUser.find(params[:id])
   end
 
   def new
@@ -21,9 +21,10 @@ class AuthUsersController < ApplicationController
   def create
 
     # return render plain: params.inspect
-    # return render plain: user_params.inspect
 
-    # This one works
+    #
+    # Passing this object instead of user_params populates both tables
+    #
     params = {
       email: "delasthanos@gmail.com",
       password_digest: "delasthanos@gmail.com",
@@ -31,15 +32,31 @@ class AuthUsersController < ApplicationController
         firstname: "thanos",
         lastname: "delas"
       }
-    }
+    }    
 
-    @auth_user = AuthUser.new(params)
+    @auth_user = AuthUser.new(user_params)
 
     if @auth_user.save
       flash[:success] = "User created successfully"
       redirect_to action: "index"
     else
       render 'new'
+    end
+
+  end
+
+  def edit
+    @auth_user = AuthUser.find(params[:id])
+    # return render plain: @auth_user.inspect
+  end
+
+  def update
+    @auth_user = AuthUser.find(params[:id])    
+
+    if @auth_user.update(user_params)
+      redirect_to @auth_user
+    else
+      render :edit
     end
 
   end
@@ -69,10 +86,11 @@ class AuthUsersController < ApplicationController
   private def user_params
 
     # params.require(:auth_user).permit(:email, :password_digest)
+    # return params.require(:auth_user).permit!
     params.require(:auth_user).permit(
       :email,
       :password_digest,
-      auth_user_detail_attributes: [:firstname, :lastname]
+      auth_user_detail_attributes: [:id, :firstname, :lastname]
     )
   end
 
