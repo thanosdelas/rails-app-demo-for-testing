@@ -12,6 +12,8 @@ class AuthUsersController < ApplicationController
 
   def show
     @auth_user = AuthUser.find(params[:id])
+    @auth_user_details =  @auth_user.auth_user_detail()
+    # return render plain: @auth_user.inspect
   end
 
   def new

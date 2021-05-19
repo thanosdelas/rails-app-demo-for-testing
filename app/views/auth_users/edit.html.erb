@@ -12,18 +12,25 @@
       <%= f.label :password_digest %>
       <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
+      <hr />
+
       <%= f.fields_for :auth_user_detail do |details| %>
-        <div >
-          <%= details.label :firstname %>
-          <%= details.text_field :firstname %>
-        </div>
-        <div >
-          <%= details.label :lastname %>
-          <%= details.text_field :lastname %>
+        <div class="user-details-form">
+          <h6>User details</h6>
+          <hr />
+          <div>
+            <%= details.label :firstname %>
+            <%= details.text_field :firstname, class: 'mb-1 form-control' %>
+          </div>
+          <div >
+            <%= details.label :lastname %>
+            <%= details.text_field :lastname, class: 'mb-1 form-control' %>
+          </div>
         </div>
       <% end %>
 
-      <%= f.submit "Update User", class: "mt-2 btn btn-primary" %>
+      <a href="<%= auth_user_path%>" class="mt-3 btn btn-sm btn-danger">Cancel</a>
+      <%= f.submit "Update User", class: "mt-3 btn btn-sm btn-success" %>
     <% end %>
   </div>
   

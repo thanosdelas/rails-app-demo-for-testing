@@ -33,10 +33,10 @@
           <a href="<%= products_path+"/#{product.id}" %>"><%= product.name%></a>          
         </div>        
 
-        <div> 
-          <a href="<%= product_path(product) %>" class="crud-action">View</a>         
+        <div>
+          <%= link_to "Delete", product_path(product), class: "crud-action", method: :delete, data: { confirm: 'Are you sure?' } %>
           <a href="<%= edit_product_path(product) %>" class="crud-action">Edit</a>
-          <%= link_to "Delete", product_path(product), class: "crud-action", method: :delete, data: { confirm: 'Are you sure?' } %>          
+          <a href="<%= product_path(product) %>" class="crud-action">View</a>          
         </div>
 
       </div>

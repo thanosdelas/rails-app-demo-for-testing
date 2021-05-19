@@ -4,13 +4,14 @@
 <a href="<%= generate_users_path%>" class="btn btn-sm btn-warning my-2">Generate Dummy Users</a>
 
 <div class="listing">
-	<ul>
-		<% @auth_users.each do |auth_user| %>
-		  <li>
-		    <%= auth_user.email%>
-		    <a href="<%= edit_auth_user_path(auth_user) %>" class="crud-action">Edit</a>
-		  </li>
-	  <% end %>
-	</ul>
+  <ul>
+    <% @auth_users.each do |auth_user| %>
+      <li>
+        <%= auth_user.email%>
+        <a href="<%= edit_auth_user_path(auth_user) %>" class="crud-action">Edit</a>
+        <a href="<%= auth_user_path(auth_user) %>" class="crud-action">View</a>
+      </li>
+    <% end %>
+  </ul>
 </div>
 

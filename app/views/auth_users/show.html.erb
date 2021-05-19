@@ -1,8 +1,30 @@
 #views/users/show.html.erb
 <div class="row">
-  <div class="offset-4 col-md-4">
-      <h3 class='text-center'>
-        <%= @auth_user.email %>
-      </h3>
+  <div class="col-sm-12">
+    <a href="<%= auth_users_path%>" class="btn btn-sm btn-primary mt-2">All Users</a>
+    <div>
+      <h2><%= @auth_user.email %></h2>
+    </div>
+    <hr />
+    <h6>Details</h6>
+    <div>
+      <b>email:</b> <%= @auth_user.email %>
+    </div>
+    <div>
+      <b>firstname:</b> <%= @auth_user_details.firstname %>
+    </div>
+    <div>
+      <b>lastname:</b> <%= @auth_user_details.firstname %>
+    </div>
+    <hr />
+    <div>
+      <pre><%= @auth_user.inspect %></pre>
+      <pre><%= @auth_user_details.inspect %></pre>
+    </div>
+    <hr />
+    <div>
+      <%= link_to "Delete", auth_user_path(@auth_user), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to "Edit", edit_auth_user_path(@auth_user), class: "btn btn-sm btn-warning" %>
+    </div>
   </div>
 </div>

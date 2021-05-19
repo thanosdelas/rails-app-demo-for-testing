@@ -172,3 +172,11 @@ pre{
   text-decoration: underline;
   opacity: .5;
 }
+
+.user-details-form{
+  background: #f7f7f7;
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 10px #aaa;
+  font-size: 0.8rem;
+}
