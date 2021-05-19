@@ -79,6 +79,15 @@ class AuthUsersController < ApplicationController
 
   end
 
+  def destroy
+    @auth_user = AuthUser.find(params[:id])
+    @auth_user.auth_user_detail.destroy
+    @auth_user.destroy
+
+    flash[:danger] = "User with email "+@auth_user.email+" deleted successfully"
+    redirect_to auth_users_path
+  end
+
   def generate_users
     users = AuthUser.all()
     users.destroy_all()
