@@ -16,6 +16,15 @@ class AuthUsersController < ApplicationController
 
   def new
     @auth_user = AuthUser.new
+    #
+    # [NOTE]
+    # - If you ommit AuthUserDetail.new, user detail fields do not appear of first request.
+    #   But they do appear after form submission.
+    #   Find out why this happens.
+    #
+
+    # The following are the same. Probably 'build' prefix works as an alias (?).
+    # @auth_user.build_auth_user_detail
     @auth_user.auth_user_detail = AuthUserDetail.new
   end
 
@@ -47,6 +56,12 @@ class AuthUsersController < ApplicationController
 
   def edit
     @auth_user = AuthUser.find(params[:id])
+    @auth_user_details =  @auth_user.auth_user_detail()
+    # return render plain: @auth_user.inspect
+    # @auth_user_details = @auth_user.auth_user_detail()
+    # return render plain: @auth_user_details.inspect
+    # @auth_user.build_auth_user_detail(:firstname => "go", :lastname => "go2")
+    # @auth_user.auth_user_detail.find(params[:id])
     # return render plain: @auth_user.inspect
   end
 
@@ -54,6 +69,7 @@ class AuthUsersController < ApplicationController
     @auth_user = AuthUser.find(params[:id])    
 
     if @auth_user.update(user_params)
+      flash[:success] = "User updated successfully"
       redirect_to @auth_user
     else
       render :edit

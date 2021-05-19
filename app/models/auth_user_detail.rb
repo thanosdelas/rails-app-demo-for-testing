@@ -3,4 +3,5 @@ class AuthUserDetail < ApplicationRecord
   validates :firstname, presence: true, length: { minimum: 3 }
   validates :lastname, presence: true, length: { minimum: 3 }  
   # validates_presence_of :firstname
+  # attr_accessible: :firstname, :lastname
 end

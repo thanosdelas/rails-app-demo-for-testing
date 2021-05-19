@@ -4,7 +4,7 @@
 
   <div class="col-md-6">
     <%= form_with(model: @auth_user, local: true) do |f| %>
-      <%#= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages' %>
 
       <%= f.label :email %>
       <%= f.text_field :email, class: 'mb-1 form-control' %>
@@ -12,8 +12,7 @@
       <%= f.label :password_digest %>
       <%= f.text_field :password_digest, class: 'mb-1 form-control' %>
 
-      <%= f.fields_for :auth_user_details do |details| %>
-      <%# fields_for :auth_user_details do |details| %>
+      <%= f.fields_for :auth_user_detail do |details| %>
         <div >
           <%= details.label :firstname %>
           <%= details.text_field :firstname %>
