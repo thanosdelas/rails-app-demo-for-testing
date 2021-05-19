@@ -39,7 +39,8 @@ class ProductsController < ApplicationController
 
   def api
     @products = Product.all()
-    return render json: @products
+    # return render json: @products
+    return self.json(@products)
   end
 
   def show

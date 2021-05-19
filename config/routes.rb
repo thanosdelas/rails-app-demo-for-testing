@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # get "products", to: "products#index"
   # get "products/listing", to: "products#listing"
   # get "products/:id", to: "products#show"
+  get "products/api", to: "products#api", as: :products_api
   get "products/generate", to: "products#generate_products", as: :generate_products
   get "products/page(/:page)", to: "products#index", as: :products_page
   resources :products  
