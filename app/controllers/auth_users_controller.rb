@@ -42,7 +42,7 @@ class AuthUsersController < ApplicationController
         firstname: "thanos",
         lastname: "delas"
       }
-    }    
+    }
 
     @auth_user = AuthUser.new(user_params)
     @auth_user.auth_user_detail = AuthUserDetail.new(user_params[:auth_user_detail_attributes])
@@ -90,14 +90,61 @@ class AuthUsersController < ApplicationController
 
   def generate_users
     users = AuthUser.all()
-    users.destroy_all()
+
+    if users.length > 0
+      users.each do |user|
+        # user.auth_user_detail.destroy
+      end
+      users.destroy_all()
+    end
+
+    usersToImport = [
+      {
+        email: "delasthanos@gmail.com",
+        password_digest: "passwordhash",
+        auth_user_detail_attributes: {
+          firstname: "thanos",
+          lastname: "delas"
+        }
+      },
+      {
+        email: "gregsmith@example.com",
+        password_digest: "passwordhash",
+        auth_user_detail_attributes: {
+          firstname: "gregsmith",
+          lastname: "Smith"
+        }
+      },
+      {
+        email: "nikilauad@example.com",
+        password_digest: "passwordhash",
+        auth_user_detail_attributes: {
+          firstname: "Niki",
+          lastname: "Lauda"
+        }
+      },
+    ]
+
+    usersToImport.each do |user|
+      user = AuthUser.new(user)
+      result = user.save()
+      if !result
+        return render plain: result.inspect
+      end
+    end
 
     14.times { |i| 
 
       user_email = "user#{i}@example.com"
       user_passowrd = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
 
-      user = AuthUser.new("email": user_email, "password_digest": user_passowrd)
+      user = AuthUser.new(
+        "email": user_email,
+        "password_digest": user_passowrd
+      )
+
+      user.auth_user_detail = AuthUserDetail.new({firstname: "firstname", lastname: "lastname"})
+
       if !user.save()
         flash[:danger] = "Could not generate users: "+user.errors.messages.inspect+user.errors.full_messages.inspect
         return redirect_to action: "index"
