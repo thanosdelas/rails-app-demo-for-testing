@@ -92,9 +92,27 @@ class ProductCategoriesController < ApplicationController
   end
 
   def generate_categories
-    category = ProductCategory.new("name": "asdasdas")
-    category.save()
-    return render plain: "done"
+
+    product_categories = ProductCategory.all()
+    product_categories.destroy_all()
+
+    require 'json'
+    product_categories_file = File.read('./db/dummy-content/product-categories.json')
+    product_categories = JSON.parse(product_categories_file)
+    product_categories["product_categories"].each do |product_category|
+      category = ProductCategory.new(
+        "id": product_category["product_category_id"], 
+        "name": product_category["name"],
+        "parent_id": product_category["parent_product_category_id"],
+      )
+      if !category.save()
+        flash[:danger] = "Could not generate product category: "+category.errors.messages.inspect+category.errors.full_messages.inspect
+        redirect_to action: "index"
+      end
+    end
+
+    flash[:message] = "Product categories generated successfully"
+    return redirect_to action: "index"
   end
 
   private

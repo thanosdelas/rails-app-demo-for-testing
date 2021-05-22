@@ -1,0 +1,59 @@
+{
+	"product_categories": [
+		{
+			"product_category_id": 100,
+			"name": "Electronics",
+			"parent": null
+		},
+		{
+			"product_category_id": 201,
+			"name": "Accessories & Supplies",
+			"parent_product_category_id": 100
+		},
+		{
+			"product_category_id": 202,
+			"name": "Computers & Accessories",
+			"parent_product_category_id": 100
+		},
+		{
+			"product_category_id": 301,
+			"name": "Desktops",
+			"parent_product_category_id": 202
+		},
+		{
+			"product_category_id": 302,
+			"name": "Laptops",
+			"parent_product_category_id": 202
+		},
+		{
+			"product_category_id": 303,
+			"name": "Tablets",
+			"parent_product_category_id": 202
+		},
+		{
+			"product_category_id": 203,
+			"name": "GPS, Finders & Accessories",
+			"parent_product_category_id": 100
+		},
+		{
+			"product_category_id": 204,
+			"name": "Home Audio",
+			"parent_product_category_id": 100
+		},
+		{
+			"product_category_id": 205,
+			"name": "Office Electronics",
+			"parent_product_category_id": 100
+		},
+		{
+			"product_category_id": 206,
+			"name": "Security & Surveillance",
+			"parent_product_category_id": 100
+		},
+		{
+			"product_category_id": 207,
+			"name": "Television & Video",
+			"parent_product_category_id": 100
+		}
+	]
+}
