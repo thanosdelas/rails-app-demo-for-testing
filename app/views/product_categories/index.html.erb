@@ -1,0 +1,45 @@
+<h2><%= @title%></h2>
+
+<a href="<%= new_product_category_path%>" class="btn btn-sm btn-success my-2">Create Product Category</a>
+
+<div class="listing">
+
+  <%= "No product categories found" if @pagination[:total] == 0 %>
+
+  <div>
+    <%#= "Showing "+@pagination[:per_page].to_s+" of "+@pagination[:total].to_s if @pagination[:total] > 0 %>
+    <%= "Showing "+@pagination[:showing].to_s+" results" if @pagination[:total] > 0 %>
+  </div>
+
+  <div>
+    <% if @pagination[:page] > 1%>
+      <a href="<%= product_categories_path%>/<%= @pagination[:page]-1%>">Previous</a>
+    <% end %>
+    Page <%= @pagination[:page]%> of <%= @pagination[:pages]%> 
+
+    <% if @pagination[:page] < @pagination[:pages]%>
+      <a href="<%= product_categories_path%>/<%= @pagination[:page]+1%>">Next</a>
+    <% end %>
+  </div>
+
+  <ul>
+    <% @product_categories.each do |product_category| %>
+    <li>
+      <!--<pre><%= product_category.inspect%></pre>-->
+      <div>
+        <%#= link_to product_category.name, product_category %>
+        <div class="product_category-title-link">
+          <a href="<%= product_categories_path+"/#{product_category.id}" %>"><%= product_category.name%></a>          
+        </div>        
+
+        <div>
+          <%= link_to "Delete", product_category_path(product_category), class: "crud-action", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <a href="<%= edit_product_category_path(product_category) %>" class="crud-action">Edit</a>
+          <a href="<%= product_category_path(product_category) %>" class="crud-action">View</a>          
+        </div>
+
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
