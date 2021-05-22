@@ -6,35 +6,8 @@ class ProductCategoriesController < ApplicationController
   end
 
   def index
-
     @title = "Product Categories"
-    # @product_categories = Product.all()
-    @pagination = {
-      page: 1,
-      per_page: 10,
-      total: 0,
-      pages: 0,
-      offset: 0,
-      showing: ""
-    }
-
-    # Check if page exists in params
-    if params.has_key?(:page)
-      @pagination[:page] = params[:page].to_i
-    end
-
-    # Calculate offset
-    if @pagination[:page] > 1
-      @pagination[:offset] = (@pagination[:page] - 1) * @pagination[:per_page]
-    end
-
-    @pagination[:total] = ProductCategory.all.count
-    @pagination[:pages] = (ProductCategory.all.count / @pagination[:per_page].to_f).ceil
-    # return render plain: @pagination[:pages].to_s
-
-    @pagination[:showing] = @pagination[:offset].to_s+" - "+(@pagination[:offset]+@pagination[:per_page]).to_s
-
-    @product_categories = ProductCategory.order(created_at: :asc).limit(@pagination[:per_page]).offset(@pagination[:offset])
+    @product_categories = ProductCategory.all()
   end
 
   def api
