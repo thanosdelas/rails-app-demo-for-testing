@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get "products/generate", to: "products#generate_products", as: :generate_products
   get "products/page(/:page)", to: "products#index", as: :products_page
   resources :products
-  resources :product_categories
+  get "product-categories/generate-product-categories", to: "product_categories#generate_categories"
+  resources :product_categories, path: 'product-categories'
   # get "/signup", to: "auth_users#new"
   # post "/signup", to: "auth_users#create"
 

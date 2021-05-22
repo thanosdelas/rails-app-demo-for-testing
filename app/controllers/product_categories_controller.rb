@@ -91,6 +91,12 @@ class ProductCategoriesController < ApplicationController
     redirect_to product_categories_path
   end
 
+  def generate_categories
+    category = ProductCategory.new("name": "asdasdas")
+    category.save()
+    return render plain: "done"
+  end
+
   private
     def product_category_params
       params.require(:product_category).permit(:name, :parent_id)
