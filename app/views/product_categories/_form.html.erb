@@ -26,6 +26,10 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <%= form.collection_select(:parent_id, ProductCategory.all, :id, :name, {}, {class: "form-control"}) %>
+  </div>
+
   <div>
     <a href="<%= products_path%>" class="btn btn-sm btn-danger">Cancel</a>
     <button class="btn btn-sm btn-success">Save</button>
