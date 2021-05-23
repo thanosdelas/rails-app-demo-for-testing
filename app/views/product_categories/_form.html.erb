@@ -27,7 +27,8 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.collection_select(:parent_id, ProductCategory.all, :id, :name, {}, {class: "form-control"}) %>
+    <label>Parent Category</label>
+    <%= form.collection_select(:parent_id, ProductCategory.all, :id, :name, {:include_blank => "-"}, {class: "form-control"}) %>
   </div>
 
   <div>
