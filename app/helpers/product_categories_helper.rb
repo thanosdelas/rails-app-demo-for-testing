@@ -35,8 +35,10 @@ module ProductCategoriesHelper
 	        html = []
 
 	        html.append('<li style="padding-left: '+(nested_width*(depth+1)).to_s+'px">')
-	        html.append(symbol*depth)
-	        html.append(c["name"])
+		        html.append('<a href="'+product_category_path(c["id"])+'">')
+			        html.append(symbol*depth)
+			        html.append(c["name"])
+	        	html.append('</a>')
 	        html.append('</li>')
 
 	        @collect_html += html.join("")
