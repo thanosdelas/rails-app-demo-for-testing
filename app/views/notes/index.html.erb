@@ -47,3 +47,31 @@ This will destroy your db and then create it and then migrate your current schem
 Generate model and mihration from command line: 
 <pre>rails generate model Product name:string</pre>
 <pre>rails generate migration AddPriceToProducts price:decimal</pre>
+
+<h3>Debug</h3>
+
+You can output html directly from a controller using:
+
+<pre>
+output = []
+output.append("Parse categories")
+return render inline: output.join("&lt;br /&gt;")
+</pre>
+
+<h3>Ruby</h3>
+
+To deep copy an  object use:
+<pre>
+Marshal.load(Marshal.dump(@object))
+</pre>
+
+To convert an object or hash to json use:
+<pre>object_json = @object.as_json</pre>
+
+To load json from a file use:
+<pre>
+require 'json'
+file = File.read('./path-tofile/file.json')
+file_hash = JSON.parse(file)
+</pre>
+
