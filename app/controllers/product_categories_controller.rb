@@ -138,7 +138,14 @@ class ProductCategoriesController < ApplicationController
 
     require 'json'
     product_categories_file = File.read('./db/dummy-content/product-categories.json')
-    product_categories = JSON.parse(product_categories_file)
+
+    begin
+      product_categories = JSON.parse(product_categories_file)
+    rescue StandardError => e
+      flash[:danger] = "Something went wrong while trying to parse json file: ./db/dummy-content/product-categories.json <br /> #{e.to_s}"
+      return redirect_to action: "index"
+    end
+
     product_categories["product_categories"].each do |product_category|
       category = ProductCategory.new(
         "id": product_category["product_category_id"], 

@@ -10,16 +10,60 @@
 			"name": "Accessories & Supplies",
 			"parent_product_category_id": 100
 		},
+
+		{
+			"product_category_id": 210,
+			"name": "Power Strips & Surge Protectors",
+			"parent_product_category_id": 201
+		},
+
+		{
+			"product_category_id": 220,
+			"name": "Power Strips",
+			"parent_product_category_id": 210
+		},
+		{
+			"product_category_id": 221,
+			"name": "Surge Protectors",
+			"parent_product_category_id": 210
+		},
+
 		{
 			"product_category_id": 202,
 			"name": "Computers & Accessories",
 			"parent_product_category_id": 100
 		},
+
+		{
+			"product_category_id": 230,
+			"name": "Monitors",
+			"parent_product_category_id": 202
+		},
+
 		{
 			"product_category_id": 301,
 			"name": "Desktops",
 			"parent_product_category_id": 202
 		},
+
+		{
+			"product_category_id": 310,
+			"name": "All-in-Ones",
+			"parent_product_category_id": 301
+		},
+
+		{
+			"product_category_id": 311,
+			"name": "Minis",
+			"parent_product_category_id": 301
+		},
+
+		{
+			"product_category_id": 312,
+			"name": "Towers",
+			"parent_product_category_id": 301
+		},
+
 		{
 			"product_category_id": 302,
 			"name": "Laptops",
@@ -54,6 +98,37 @@
 			"product_category_id": 207,
 			"name": "Television & Video",
 			"parent_product_category_id": 100
+		},
+
+		{
+			"product_category_id": 1000,
+			"name": "Home & Kitchen",
+			"parent_product_category_id": null
+		},
+
+		{
+			"product_category_id": 1001,
+			"name": "Kitchen & Dining",
+			"parent_product_category_id": 1000
+		},
+
+		{
+			"product_category_id": 1100,
+			"name": "Kitchen Utensils & Gadgets",
+			"parent_product_category_id": 1001
+		},
+
+		{
+			"product_category_id": 1101,
+			"name": "Kitchen Small Appliances",
+			"parent_product_category_id": 1001
+		},
+
+		{
+			"product_category_id": 1102,
+			"name": "Kitchen Storage & Organization",
+			"parent_product_category_id": 1001
 		}
+
 	]
 }
