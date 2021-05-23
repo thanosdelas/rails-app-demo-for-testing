@@ -8,6 +8,72 @@ class ProductCategoriesController < ApplicationController
   def index
     @title = "Product Categories"
     @product_categories = ProductCategory.all()
+    @product_categories_to_html = []
+    @product_categories_parse = []
+
+    @product_categories_nested = parse_categories(@product_categories)
+
+    # return render plain: @product_categories_to_html.inspect
+    # return parse_categories(@product_categories)
+  end
+
+  #
+  # Dispatch parse categories
+  #
+  def parse_categories(categories)
+
+    # Conert active record categories to json
+    categories = @product_categories.as_json
+
+    # parse_poduct_categories_presentation(categories, nil)
+    return parse_poduct_categories(categories)
+    # return render plain: parse_poduct_categories(categories)
+    # return render json: @product_categories_parse.to_json
+
+    # o = []
+    # o.append("Parse categories <br />")
+    # o.append(categories)
+    # o.append(@product_categories_to_html)
+    # o.append(@product_categories_parse)
+    # o.append(@product_categories_parse.inspect)
+    # return render inline: o.join("<br />")
+  end
+
+  #
+  # Parse categories hierachy for presentation
+  #
+  def parse_poduct_categories_presentation(categories, selected_id=nil, depth=-1, parent_id=nil)
+
+    depth += 1
+    symbol = "--"
+    categories.each do |c|
+      if parent_id == c["parent_id"]
+        html = []
+        html.append(symbol*depth)
+        html.append(c["name"])
+        @product_categories_to_html.append(html.join(""))
+        parse_poduct_categories_presentation(categories, selected_id, depth, c["id"])
+      end
+    end
+  end
+
+  #
+  # Parse categories hierachy
+  #
+  def parse_poduct_categories(categories, result = [], depth=-1, parent_id=nil)
+
+    depth += 1
+    categories.each do |c|
+      if parent_id == c["parent_id"]
+
+        c["children"] = []
+        result.append(c)
+        parse_poduct_categories(categories, c["children"], depth, c["id"])
+      end
+    end
+
+    return result
+
   end
 
   def api

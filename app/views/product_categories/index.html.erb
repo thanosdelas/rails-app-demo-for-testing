@@ -5,6 +5,16 @@
 <div class="listing">
 
   <ul>
+    <% @product_categories_to_html.each do |category| %>
+      <li><%= category %></li>
+    <% end %>
+  </ul>
+
+  <pre><%= @product_categories_nested.inspect %></pre>
+
+  <hr />
+
+  <ul>
     <% @product_categories.each do |product_category| %>
     <li>
       <!--<pre><%= product_category.inspect%></pre>-->
