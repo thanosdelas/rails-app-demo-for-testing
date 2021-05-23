@@ -18,6 +18,17 @@ gem install rails --no-ri --no-rdoc
 gem install rails --no-document # or -N in short
 </pre>
 
+<hr />
+
+<pre>
+	Sometimes you have to restart rails server for changes to take effect.
+	eg.:
+	After created a new helper module and test it's output in view, 
+	changing module method to accept arguments was raising invalid arguments error,
+	but was working after server restart.
+	Find out why this happens. Is it a bug or the excpected behaviour?
+</pre>
+
 <h3>Database</h3>
 
 Change postgreSQL to MySQL

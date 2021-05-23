@@ -1,5 +1,7 @@
 class ProductCategoriesController < ApplicationController
 
+  include ProductCategoriesHelper
+
   def initialize
     super
     @page = "product_categories"

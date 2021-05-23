@@ -180,3 +180,16 @@ pre{
   box-shadow: 0 0 10px #aaa;
   font-size: 0.8rem;
 }
+
+.nested-categories{
+  display: block;
+  width: 400px;
+  box-shadow: 0 0 4px #7a7a7a;
+}
+
+.nested-categories li{
+  background: none;
+  border-bottom: 1px solid #DDD;
+  padding: 1rem;
+  margin: 0;
+}

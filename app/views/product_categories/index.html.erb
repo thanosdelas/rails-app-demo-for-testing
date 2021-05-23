@@ -12,26 +12,24 @@
     <% end %>
   </ul>
 
-  <pre><%= @product_categories_nested.inspect %></pre>
-
-  <hr />
+  <div class="my-3">
+    <pre><%= @product_categories_nested.inspect %></pre>
+    <%= test_helper(@product_categories) %>
+  </div>
 
   <ul>
     <% @product_categories.each do |product_category| %>
     <li>
-      <!--<pre><%= product_category.inspect%></pre>-->
       <div>
         <%#= link_to product_category.name, product_category %>
         <div class="product_category-title-link">
           <a href="<%= product_categories_path+"/#{product_category.id}" %>"><%= product_category.name%></a>          
         </div>        
-
         <div>
           <%= link_to "Delete", product_category_path(product_category), class: "crud-action", method: :delete, data: { confirm: 'Are you sure?' } %>
           <a href="<%= edit_product_category_path(product_category) %>" class="crud-action">Edit</a>
           <a href="<%= product_category_path(product_category) %>" class="crud-action">View</a>          
         </div>
-
       </div>
     </li>
     <% end %>
