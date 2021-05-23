@@ -77,9 +77,8 @@ class ProductCategoriesController < ApplicationController
   end
 
   def api
-    @product_categories = Product.all()
-    # return render json: @product_categories
-    return self.json(@product_categories)
+    @product_categories = ProductCategory.all()
+    return self.json(parse_categories(@product_categories))
   end
 
   def show
