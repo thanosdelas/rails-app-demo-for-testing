@@ -97,12 +97,13 @@ class ProductCategoriesController < ApplicationController
   def create
 
     @product_category = ProductCategory.new(product_category_params)
-    # return render plain: @product_category.inspect
 
     if @product_category.save
       flash[:success] = "Product category created"
       redirect_to @product_category
     else
+      # Required if errors found
+      @product_categories = ProductCategory.all()
       render :new
       #render :json => { :errors => @article.errors.full_messages }
     end
@@ -123,6 +124,8 @@ class ProductCategoriesController < ApplicationController
     if @product_category.update(product_category_params)
       redirect_to @product_category
     else
+      # Required if errors found
+      @product_categories = ProductCategory.all()
       render :edit
     end
 
