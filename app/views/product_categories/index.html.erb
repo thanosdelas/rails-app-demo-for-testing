@@ -13,10 +13,15 @@
   </ul>
 
   <div class="my-3">
-    <pre><%= @product_categories_nested.inspect %></pre>
-    <%= test_helper(@product_categories) %>
+    <% if false %>
+      <pre><%= @product_categories_nested.inspect %></pre>
+    <% end %>
+
+    <%= print_categories(@product_categories) %>
   </div>
 
+  <%# Flat Categories %>
+  <% if false %>
   <ul>
     <% @product_categories.each do |product_category| %>
     <li>
@@ -34,4 +39,5 @@
     </li>
     <% end %>
   </ul>
+  <% end %>
 </div>

@@ -1,21 +1,27 @@
 module ProductCategoriesHelper
 
-  def test_helper(categories)
-  	# "Test inside ProductCategoryHelper: "+categories.inspect
-
-  	# result = []
-  	# categories.each do |category|
-  	# 	result.append(category["name"])
-  	# 	result.append("<hr />")
-  	# end
-
-  	# return result.join("<br />").html_safe
+	#
+	# Print nested categories
+	#
+  def print_categories(categories)
 
   	@collect_html = '<ul class="nested-categories">'
   	categories = categories.as_json
 		parse_poduct_categories_presentation(categories)
 		@collect_html += "</ul>"
 
+		return @collect_html.html_safe
+  end
+
+	#
+	# Print nested categories options
+	# To be wrapped in select tag
+	#
+  def print_categories_dropdown_options(categories)
+
+  	@collect_html = ''
+  	categories = categories.as_json
+		parse_categories_dropdown(categories)
 		return @collect_html.html_safe
 
   end
@@ -48,7 +54,29 @@ module ProductCategoriesHelper
 	      end
 	    end
 
-	    # return collect_html
+	  end
+
+	  #
+	  # Parse categories hierachy for dropdown select
+	  #
+	  def parse_categories_dropdown(categories, depth=-1, parent_id=nil)
+
+	    depth += 1
+	    nested_width = 12;
+	    symbol = "-"
+	    categories.each do |c|
+	      if parent_id == c["parent_id"]
+	        html = []
+
+	        html.append('<option style="padding-left: '+(nested_width*(depth+1)).to_s+'px" value="'+c["id"].to_s+'">')
+		        html.append(symbol*depth)
+		        html.append(c["name"])
+	        html.append('</option>')
+	        @collect_html += html.join("")
+
+	        parse_categories_dropdown(categories, depth, c["id"])
+	      end
+	    end
 
 	  end
 

@@ -1,16 +1,16 @@
 class ProductCategoriesController < ApplicationController
 
-  include ProductCategoriesHelper
+  include ProductCategoriesHelper  
 
   def initialize
     super
     @page = "product_categories"
+    @product_categories_to_html = []
   end
 
   def index
     @title = "Product Categories"
     @product_categories = ProductCategory.all()
-    @product_categories_to_html = []
     @product_categories_parse = []
 
     @product_categories_nested = parse_categories(@product_categories)
@@ -57,6 +57,7 @@ class ProductCategoriesController < ApplicationController
         parse_poduct_categories_presentation(categories, selected_id, depth, c["id"])
       end
     end
+
   end
 
   #
@@ -90,26 +91,29 @@ class ProductCategoriesController < ApplicationController
 
   def new
     @product_category = ProductCategory.new
+    @product_categories = ProductCategory.all()
   end
 
   def create
 
     @product_category = ProductCategory.new(product_category_params)
-
-    # @product_category[:parent_id] = nil
     # return render plain: @product_category.inspect
 
     if @product_category.save
       flash[:success] = "Product category created"
       redirect_to @product_category
-    else      
+    else
       render :new
       #render :json => { :errors => @article.errors.full_messages }
     end
   end
 
+  #
+  # Find an elegant (preferably) way to select existing category
+  #
   def edit
     @product_category = ProductCategory.find(params[:id])
+    @product_categories = ProductCategory.all()
   end
 
   def update

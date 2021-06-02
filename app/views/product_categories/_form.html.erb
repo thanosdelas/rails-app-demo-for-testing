@@ -26,13 +26,28 @@
     </div>
   <% end %>
 
+  <%# Use the following to generate a dropdown %>
+  <% if false %>
   <div class="form-group">
     <label>Parent Category</label>
     <%= form.collection_select(:parent_id, ProductCategory.all, :id, :name, {:include_blank => "-"}, {class: "form-control"}) %>
   </div>
+  <% end %>
+
+  <%# Hradcoded parent id for testing %>
+  <!-- <div><input type="text" name="product_category[parent_id]" value="203"></div> -->
+
+  <% if true %>
+  <div class="form-group">
+    <label>Parent Category</label>
+    <select class="form-control" name="product_category[parent_id]">
+      <%= print_categories_dropdown_options(@product_categories) %>
+    </select>
+  </div>
+  <% end %>
 
   <div>
-    <a href="<%= products_path%>" class="btn btn-sm btn-danger">Cancel</a>
+    <a href="<%= product_categories_path%>" class="btn btn-sm btn-danger">Cancel</a>
     <button class="btn btn-sm btn-success">Save</button>
   </div>
 <% end %>
