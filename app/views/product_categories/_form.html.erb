@@ -37,11 +37,13 @@
   <%# Hradcoded parent id for testing %>
   <!-- <div><input type="text" name="product_category[parent_id]" value="203"></div> -->
 
+  <%#= print_categories_dropdown_options(@product_categories, @product_category) %>
+
   <% if true %>
   <div class="form-group">
     <label>Parent Category</label>
     <select class="form-control" name="product_category[parent_id]">
-      <%= print_categories_dropdown_options(@product_categories) %>
+      <%= print_categories_dropdown_options(@product_categories, @product_category) %>
     </select>
   </div>
   <% end %>

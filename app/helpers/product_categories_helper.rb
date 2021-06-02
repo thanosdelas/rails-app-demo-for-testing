@@ -17,8 +17,9 @@ module ProductCategoriesHelper
 	# Print nested categories options
 	# To be wrapped in select tag
 	#
-  def print_categories_dropdown_options(categories)
+  def print_categories_dropdown_options(categories, category)
 
+  	@selected_category = category;
   	@collect_html = ''
   	categories = categories.as_json
 		parse_categories_dropdown(categories)
@@ -68,7 +69,10 @@ module ProductCategoriesHelper
 	      if parent_id == c["parent_id"]
 	        html = []
 
-	        html.append('<option style="padding-left: '+(nested_width*(depth+1)).to_s+'px" value="'+c["id"].to_s+'">')
+	        selected = ''
+	        selected = 'selected' if c["id"] == @selected_category['parent_id']
+
+	        html.append('<option style="padding-left: '+(nested_width*(depth+1)).to_s+'px" value="'+c["id"].to_s+'" '+selected+'>')
 		        html.append(symbol*depth)
 		        html.append(c["name"])
 	        html.append('</option>')
