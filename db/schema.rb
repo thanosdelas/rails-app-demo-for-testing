@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_074014) do
+ActiveRecord::Schema.define(version: 2021_06_07_122333) do
 
   create_table "auth_user_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "firstname"
@@ -40,9 +40,12 @@ ActiveRecord::Schema.define(version: 2021_05_22_074014) do
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.bigint "product_category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
   add_foreign_key "auth_user_details", "auth_users"
+  add_foreign_key "products", "product_categories"
 end
