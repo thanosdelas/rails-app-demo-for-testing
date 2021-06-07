@@ -50,6 +50,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product_categories = ProductCategory.all()
   end
 
   def create
@@ -67,6 +68,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @product_categories = ProductCategory.all()
   end
 
   def update

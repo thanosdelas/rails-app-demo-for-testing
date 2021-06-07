@@ -16,6 +16,7 @@ module ProductCategoriesHelper
 	#
 	# Print nested categories options
 	# To be wrapped in select tag
+	# Use for create / update product categories
 	#
   def print_categories_dropdown_options(categories, category)
 
@@ -26,7 +27,18 @@ module ProductCategoriesHelper
 		# You can set empty parent category to "null" or ""
 		@collect_html = '<option value="null">-</option>'+@collect_html;
 		return @collect_html.html_safe
+  end
 
+	#
+	# Print nested categories options
+	# To be wrapped in select tag
+	# Use for create / update product	
+	#
+  def print_product_categories_dropdown_options(categories, product)
+  	@collect_html = ''
+    @selected_product_category = product
+  	parse_categories_dropdown_for_product(categories)  	
+  	return @collect_html.html_safe
   end
 
   private
@@ -81,6 +93,33 @@ module ProductCategoriesHelper
 	        @collect_html += html.join("")
 
 	        parse_categories_dropdown(categories, depth, c["id"])
+	      end
+	    end
+
+	  end
+
+	  #
+	  # Parse categories hierachy for products dropdown select
+	  #
+	  def parse_categories_dropdown_for_product(categories, depth=-1, parent_id=nil)
+
+	    depth += 1
+	    nested_width = 12;
+	    symbol = "-"
+	    categories.each do |c|
+	      if parent_id == c["parent_id"]
+	        html = []
+
+	        selected = ''
+	        selected = 'selected' if c["id"] == @selected_product_category['product_category_id']
+
+	        html.append('<option style="padding-left: '+(nested_width*(depth+1)).to_s+'px" value="'+c["id"].to_s+'" '+selected+'>')
+		        html.append(symbol*depth)
+		        html.append(c["name"])
+	        html.append('</option>')
+	        @collect_html += html.join("")
+
+	        parse_categories_dropdown_for_product(categories, depth, c["id"])
 	      end
 	    end
 

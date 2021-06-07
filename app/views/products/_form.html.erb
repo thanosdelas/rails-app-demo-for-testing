@@ -34,7 +34,14 @@
     <% end %>
   </div>
 
-  <input type="text" name="product[product_category_id]" value="100" />
+  <%# <input type="text" name="product[product_category_id]" value="100" /> %>
+
+  <div class="form-group">
+    <label>Select Product Category</label>
+    <select class="form-control" name="product[product_category_id]">
+      <%= print_product_categories_dropdown_options(@product_categories, @product) %>
+    </select>
+  </div>
 
   <div>
     <a href="<%= products_path%>" class="btn btn-sm btn-danger">Cancel</a>
