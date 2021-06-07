@@ -23,6 +23,8 @@ module ProductCategoriesHelper
   	@collect_html = ''
   	categories = categories.as_json
 		parse_categories_dropdown(categories)
+		# You can set empty parent category to "null" or ""
+		@collect_html = '<option value="null">-</option>'+@collect_html;
 		return @collect_html.html_safe
 
   end
