@@ -61,6 +61,7 @@ class ProductsController < ApplicationController
   def create
 
     @product = Product.new(product_params)
+    @product_categories = ProductCategory.all()
 
     if @product.save
       flash[:success] = "Product created"
@@ -79,6 +80,7 @@ class ProductsController < ApplicationController
   def update
 
     @product = Product.find(params[:id])
+    @product_categories = ProductCategory.all()
 
     if @product.update(product_params)
       redirect_to @product
