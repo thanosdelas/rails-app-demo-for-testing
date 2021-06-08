@@ -34,7 +34,12 @@ class ProductsController < ApplicationController
 
     @pagination[:showing] = @pagination[:offset].to_s+" - "+(@pagination[:offset]+@pagination[:per_page]).to_s
 
-    @products = Product.order(created_at: :asc).limit(@pagination[:per_page]).offset(@pagination[:offset])
+    @products = Product.select('products.*, product_categories.name as category_name')
+      .order(created_at: :asc)
+      .limit(@pagination[:per_page])
+      .offset(@pagination[:offset])
+      .joins(:product_category)
+      # .where("product_categories.id=301")
   end
 
   def api

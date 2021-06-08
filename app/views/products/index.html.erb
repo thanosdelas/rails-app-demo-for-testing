@@ -31,8 +31,13 @@
       <div>
         <%#= link_to product.name, product %>
         <div class="product-title-link">
-          <a href="<%= products_path+"/#{product.id}" %>"><%= product.name%></a>          
-        </div>        
+          <a href="<%= products_path+"/#{product.id}" %>"><%= product.name%></a>
+        </div>
+
+        In category: <%= product.category_name %>
+
+        <%# WARNING: Investigate further to find out where selects happen%>
+        <!-- In category: <%= product.product_category.name %> -->
 
         <div>
           <%= link_to "Delete", product_path(product), class: "crud-action", method: :delete, data: { confirm: 'Are you sure?' } %>
