@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     @pagination[:pages] = (Product.all.count / @pagination[:per_page].to_f).ceil
     # return render plain: @pagination[:pages].to_s
 
-    @pagination[:showing] = @pagination[:offset].to_s+" - "+(@pagination[:offset]+@pagination[:per_page]).to_s
+    @pagination[:showing] = (@pagination[:offset]+1).to_s+" - "+(@pagination[:offset]+@pagination[:per_page]).to_s
 
     @products = Product.select('products.*, product_categories.name as category_name')
       .order(created_at: :asc)
