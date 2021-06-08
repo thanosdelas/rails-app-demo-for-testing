@@ -101,12 +101,17 @@ class ProductsController < ApplicationController
     products = Product.all()
     products.destroy_all()
 
-    68.times { |i| 
+    20.times { |i| 
 
       product_name = "Product - #{i+1} "+(0...10).map { ('a'..'z').to_a[rand(26)] }.join
       product_description = "Description #{i} "+(0...100).map { ('a'..'z').to_a[rand(26)] }.join
 
-      product = Product.new("name": product_name, "description": product_description)
+      product = Product.new(
+        "name": product_name,
+        "description": product_description,
+        "product_category_id": 100
+      )
+
       if !product.save()
         flash[:danger] = "Could not generate products: "+product.errors.messages.inspect+product.errors.full_messages.inspect
         return redirect_to action: "index"
