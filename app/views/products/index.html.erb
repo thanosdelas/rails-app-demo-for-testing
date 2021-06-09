@@ -25,6 +25,18 @@
     </div>
   <% end %>
 
+  <hr />
+
+  <form class="search-form">
+    <div class="form-group">
+      <label>Search</label>
+      <input class="form-control" type="text" name="product_name" value="<%= request.params[:product_name]%>" placeholder="">
+    </div>
+    <button class="btn btn-sm btn-success">Search</button>
+  </form>
+
+  <hr />
+
   <ul>
     <% @products.each do |product| %>
     <li>

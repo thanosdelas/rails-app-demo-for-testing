@@ -40,6 +40,11 @@ class ProductsController < ApplicationController
       .offset(@pagination[:offset])
       .joins(:product_category)
       # .where("product_categories.id=301")
+
+    if request.params.key?("product_name")
+      @products = @products.where("products.name like ?", "%"+request.params["product_name"]+"%")
+    end
+
   end
 
   def api
