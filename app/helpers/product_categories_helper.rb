@@ -34,9 +34,9 @@ module ProductCategoriesHelper
 	# To be wrapped in select tag
 	# Use for create / update product	
 	#
-  def print_product_categories_dropdown_options(categories, product)
+  def print_product_categories_dropdown_options(categories, selected_category_id)
   	@collect_html = ''
-    @selected_product_category = product
+    @selected_product_category_id = selected_category_id
   	parse_categories_dropdown_for_product(categories)  	
   	return @collect_html.html_safe
   end
@@ -58,7 +58,7 @@ module ProductCategoriesHelper
 	        html.append('<li style="padding-left: '+(nested_width*(depth+1)).to_s+'px">')
 		        html.append('<a href="'+product_category_path(c["id"])+'">')
 			        html.append(symbol*depth)
-			        html.append(c["name"])
+			        html.append(c["name"]+"("+c["id"].to_s+")")
 	        	html.append('</a>')
 	        html.append('</li>')
 
@@ -111,7 +111,7 @@ module ProductCategoriesHelper
 	        html = []
 
 	        selected = ''
-	        selected = 'selected' if c["id"] == @selected_product_category['product_category_id']
+	        selected = 'selected' if c["id"] == @selected_product_category_id
 
 	        html.append('<option style="padding-left: '+(nested_width*(depth+1)).to_s+'px" value="'+c["id"].to_s+'" '+selected+'>')
 		        html.append(symbol*depth)

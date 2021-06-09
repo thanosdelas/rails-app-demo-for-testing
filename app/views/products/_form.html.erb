@@ -1,5 +1,7 @@
 <%= form_with(model: @product, local: true) do |form| %>
 
+  <%= product.errors.inspect %>
+
   <div class="form-group">
     <%= form.label :name %><br>
     <%= form.text_field :name, class: "form-control" %>
@@ -12,7 +14,7 @@
     <%= form.label :description %><br>
     <%= form.text_area :description, class: "form-control" %>
     <% product.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
+      <div class="error"><%= message %></div>
     <% end %>
   </div>
 
@@ -21,8 +23,12 @@
   <div class="form-group">
     <label>Select Product Category</label>
     <select class="form-control" name="product[product_category_id]">
-      <%= print_product_categories_dropdown_options(@product_categories, @product) %>
+      <option>-</option>
+      <%= print_product_categories_dropdown_options(@product_categories, @product['product_category_id']) %>
     </select>
+    <% product.errors.full_messages_for(:product_category).each do |message| %>
+      <div class="error"><%= message %></div>
+    <% end %>
   </div>
 
   <div>

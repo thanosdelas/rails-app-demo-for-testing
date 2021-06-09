@@ -4,6 +4,10 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { minimum: 10 }
   belongs_to :product_category, class_name: 'ProductCategory', foreign_key: 'product_category_id', required: true
 
+  NULL_ATTRS = %w( product_category_id )
+
+  before_save :blank_product_category_id
+
   def self.products
 
     if @pagination[:page] > 1
@@ -15,11 +19,6 @@ class Product < ApplicationRecord
       .limit(@pagination[:per_page])
       .offset(@pagination[:offset])
       .joins(:product_category)
-      # .where("product_categories.id=301")
-
-    if @filters.key?("product_name")
-      @products = @products.where("products.name like ?", "%"+@filters["product_name"]+"%")
-    end
     
     #
     # You should find a more elegant way to calculate total results with filters
@@ -30,6 +29,12 @@ class Product < ApplicationRecord
 
     if @filters.key?("product_name")
       total = total.where("products.name like ?", "%"+@filters["product_name"]+"%")
+      @products = @products.where("products.name like ?", "%"+@filters["product_name"]+"%")
+    end
+
+    if @filters.key?("product_category_id") && @filters["product_category_id"] != '-'
+      @products = @products.where(product_category_id: ProductCategory.children_ids(@filters[:product_category_id]))
+      total = total.where(product_category_id: ProductCategory.children_ids(@filters[:product_category_id]))
     end
 
     @pagination[:total] = total.count
@@ -64,5 +69,11 @@ class Product < ApplicationRecord
     return @pagination
 
   end
+
+  protected
+
+    def blank_product_category_id
+      NULL_ATTRS.each { |attr| self[attr] = nil if self[attr].blank? || self[attr]==0 }
+    end
 
 end

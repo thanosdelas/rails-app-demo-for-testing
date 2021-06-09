@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
 
     @title = "Products Listing"
 
+    # children_ids = ProductCategory.children_ids
+    # return render plain: children_ids.inspect
+
     # Check if page exists in params or set to 1
     page = 1
     if params.has_key?(:page)
@@ -18,6 +21,7 @@ class ProductsController < ApplicationController
     Product.filters(request.params)
     @pagination = Product.pagination(page)
     @products = Product.products
+    @product_categories = ProductCategory.all()
 
   end
 

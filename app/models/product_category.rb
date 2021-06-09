@@ -9,6 +9,34 @@ class ProductCategory < ApplicationRecord
 
 	before_save :blank_parent_category
 
+  def self.children_ids(parent_id)
+
+    query = "
+      SELECT id, name, parent_id
+      FROM (SELECT * FROM product_categories
+      	ORDER BY parent_id, id)
+      product_categories,
+      (SELECT @pv := ? ) initialisation
+      WHERE find_in_set(parent_id, @pv) > 0
+      AND @pv := CONCAT(@pv, ',', id)
+    "
+
+    # children = ActiveRecord::Base.connection.exec_query(query, 100)
+    children = ActiveRecord::Base.connection.exec_query(
+    	ActiveRecord::Base.send(:sanitize_sql_array, [query, parent_id])
+    )
+
+    collect_ids = []
+
+    collect_ids.push(parent_id)
+
+  	children.each do |category|
+  		collect_ids.push(category["id"])
+  	end
+
+    return collect_ids
+  end
+
 	protected
 
 		def blank_parent_category
