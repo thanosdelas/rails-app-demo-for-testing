@@ -9,18 +9,15 @@ class ProductsController < ApplicationController
 
     @title = "Products Listing"
 
-    # Check if page exists in params
+    # Check if page exists in params or set to 1
     page = 1
     if params.has_key?(:page)
       page = params[:page].to_i
     end
     
+    Product.filters(request.params)
     @pagination = Product.pagination(page)
     @products = Product.products
-
-    if request.params.key?("product_name")
-      @products = @products.where("products.name like ?", "%"+request.params["product_name"]+"%")
-    end
 
   end
 

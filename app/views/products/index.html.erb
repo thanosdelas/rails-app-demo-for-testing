@@ -10,7 +10,7 @@
 
   <% if @pagination[:total] > 0 %>
     <div>
-      <%= "Showing "+@pagination[:showing].to_s+" results" if @pagination[:total] > 0 %>
+      <%= "Showing "+@pagination[:showing].to_s+" results, from "+@pagination[:total].to_s+" total" if @pagination[:total] > 0 %>
     </div>
 
     <div>

@@ -8,11 +8,7 @@ class Product < ApplicationRecord
 
     if @pagination[:page] > 1
       @pagination[:offset] = (@pagination[:page] - 1) * @pagination[:per_page]
-    end
-
-    @pagination[:total] = Product.all.count
-    @pagination[:pages] = (Product.all.count / @pagination[:per_page].to_f).ceil
-    @pagination[:showing] = (@pagination[:offset]+1).to_s+" - "+(@pagination[:offset]+@pagination[:per_page]).to_s
+    end    
 
     @products = select('products.*, product_categories.name as category_name')
       .order(created_at: :asc)
@@ -21,7 +17,37 @@ class Product < ApplicationRecord
       .joins(:product_category)
       # .where("product_categories.id=301")
 
+    if @filters.key?("product_name")
+      @products = @products.where("products.name like ?", "%"+@filters["product_name"]+"%")
+    end
+    
+    #
+    # You should find a more elegant way to calculate total results with filters
+    # see: https://stackoverflow.com/questions/14227761/how-to-select-data-for-defined-page-and-total-count-of-records
+    # @pagination[:total] = @products.except(:offset, :limit).count
+    #
+    total = Product.select("*").joins(:product_category)
+
+    if @filters.key?("product_name")
+      total = total.where("products.name like ?", "%"+@filters["product_name"]+"%")
+    end
+
+    @pagination[:total] = total.count
+    @pagination[:pages] = (total.count / @pagination[:per_page].to_f).ceil
+
+    @pagination[:showing] = (@pagination[:offset]+1).to_s+" - "+(@pagination[:offset]+@pagination[:per_page]).to_s
+    if total.count < @pagination[:per_page]
+      @pagination[:showing] = total.count
+    end
+
     return @products
+  end
+
+  def self.filters(filters)
+
+    @filters = filters
+    return @filters
+
   end
 
   def self.pagination(page)
