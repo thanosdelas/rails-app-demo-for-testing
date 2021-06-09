@@ -6,13 +6,15 @@
 
 <div class="listing">
 
-  <%= "No products found" if @pagination[:total] == 0 %>
+  <%= "No products found" if @pagination[:total] == 0 %>  
 
   <% if @pagination[:total] > 0 %>
+
     <div>
       <%= "Showing "+@pagination[:showing].to_s+" results, from "+@pagination[:total].to_s+" total" if @pagination[:total] > 0 %>
     </div>
 
+    <% if false %>
     <div>
       <% if @pagination[:page] > 1%>
         <a href="<%= products_page_path%>/<%= @pagination[:page]-1%>">Previous</a>
@@ -23,16 +25,34 @@
         <a href="<%= products_page_path%>/<%= @pagination[:page]+1%>">Next</a>
       <% end %>
     </div>
+    <% end %>
+
+    <div id="pagination">
+      <% if @pagination[:page] > 1%>
+        <button class="btn btn-sm" data-page="<%= @pagination[:page]-1%>">Previous</button>
+      <% end %>
+
+      Page <%= @pagination[:page]%> of <%= @pagination[:pages]%> 
+
+      <% if @pagination[:page] < @pagination[:pages]%>
+        <button class="btn btn-sm" data-page="<%= @pagination[:page]+1%>">Next</button>
+      <% end %>
+    </div>
+
+
   <% end %>
 
   <hr />
 
-  <form class="search-form">
+  <form id="prodcuts-search-form" class="search-form">
+
+    <input type="hidden" name="page" value="<%= @pagination[:page] %>">
+
     <div class="form-group">
       <label>Search</label>
       <input class="form-control" type="text" name="product_name" value="<%= request.params[:product_name]%>" placeholder="">
     </div>
-    <button class="btn btn-sm btn-success">Search</button>
+    <button type="submit" class="btn btn-sm btn-success">Search</button>
   </form>
 
   <hr />
@@ -63,3 +83,5 @@
     <% end %>
   </ul>
 </div>
+
+<%= javascript_pack_tag 'products' %>
