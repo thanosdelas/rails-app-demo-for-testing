@@ -1,0 +1,45 @@
+{
+  "products":[
+    {
+      "name": "ASUS ZenBook 13 Ultra-Slim Laptop 13.3”",
+      "description": "ASUS ZenBook 13 Ultra-Slim Laptop 13.3” Full HD NanoEdge Bezel Display, Intel Core i5-1035G1 Processor, 8GB RAM, 256GB PCIe SSD, NumberPad, Windows 10 Home, Lilac Mist, UX325JA-AB51",
+      "price": "749.99",
+      "category_id": 302
+    },
+    {
+      "name": "SAMSUNG XE350XBA-K01US Chromebook 4",
+      "description": "SAMSUNG XE350XBA-K01US Chromebook 4 + Chrome OS 15.6 Full HD Intel Celeron Processor N4000 4GB RAM 32Gb Emmc Gigabit Wi-Fi, Silver",
+      "price": "235.6",
+      "category_id": 302
+    },
+
+    {
+      "name": "iBUYPOWER Pro Gaming PC Computer Desktop",
+      "description": "iBUYPOWER Pro Gaming PC Computer Desktop Trace 4 MR 180A (AMD Ryzen 5 3600 3.6GHz, NVIDIA GeForce GT 710 1GB, 8GB DDR4 RAM, 240GB SSD, WiFi Ready, Windows 10 Home)",
+      "price": "629.99",
+      "category_id": 301
+    },
+
+    {
+      "name": "HP Desktop PC, Intel Pentium Gold G6400 Processor",
+      "description": "HP Desktop PC, Intel Pentium Gold G6400 Processor, 8 GB of RAM, 256 GB SSD Storage, Windows 10 Home, High-Speed Performance Computer, 8 USB Ports, Business, Study, Videos, & Gaming (M01-F1014, 2020)",
+      "price": "650.99",
+      "category_id": 301
+    },
+
+    {
+      "name": "Samsung Galaxy Tab A7",
+      "description": "Samsung Galaxy Tab A7 10.4 Wi-Fi 32GB Silver (SM-T500NZSAXAR)",
+      "price": "199.99",
+      "category_id": 303
+    },
+
+    {
+      "name": "Apple IPad Air 2 WI-FI 64GB Space Gray (Renewed)",
+      "description": "Product works and looks like new. Backed by the 90-day Amazon Renewed Guarantee",
+      "price": "258.00`",
+      "category_id": 303
+    }
+
+  ]
+}

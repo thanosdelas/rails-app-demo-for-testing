@@ -101,6 +101,35 @@ class ProductsController < ApplicationController
     products = Product.all()
     products.destroy_all()
 
+    #
+    # Insert products from json
+    #
+    require 'json'
+    products_file = File.read('./db/dummy-content/products.json')
+
+    begin
+      products = JSON.parse(products_file)
+    rescue StandardError => e
+      flash[:danger] = "Something went wrong while trying to parse json file: ./db/dummy-content/products.json <br /> #{e.to_s}"
+      return redirect_to action: "index"
+    end
+
+    products["products"].each do |product_data|
+      product = Product.new(
+        "name": product_data["name"],
+        "description": product_data["description"],
+        "product_category_id": product_data["category_id"],
+      )
+      if !product.save()
+        flash[:danger] = "Could not generate product: "+product.errors.messages.inspect+product.errors.full_messages.inspect
+        redirect_to action: "index"
+      end
+    end
+
+
+    #
+    # Insert random products
+    #
     20.times { |i| 
 
       product_name = "Product - #{i+1} "+(0...10).map { ('a'..'z').to_a[rand(26)] }.join
