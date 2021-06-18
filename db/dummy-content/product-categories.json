@@ -13,18 +13,18 @@
 
 		{
 			"product_category_id": 210,
-			"name": "Power Strips & Surge Protectors",
+			"name": "Audio & Video Accessories",
 			"parent_product_category_id": 201
 		},
 
 		{
 			"product_category_id": 220,
-			"name": "Power Strips",
+			"name": "Speaker Accessories",
 			"parent_product_category_id": 210
 		},
 		{
 			"product_category_id": 221,
-			"name": "Surge Protectors",
+			"name": "Headphone Accessories",
 			"parent_product_category_id": 210
 		},
 

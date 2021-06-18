@@ -104,11 +104,14 @@ class ProductsController < ApplicationController
         "product_category_id": product_data["category_id"],
       )
       if !product.save()
-        flash[:danger] = "Could not generate product: "+product.errors.messages.inspect+product.errors.full_messages.inspect
-        redirect_to action: "index"
+        # return render plain: product.inspect
+        flash[:danger] = "Could not generate product: "+
+          +product["name"]+" "+
+          +product.errors.messages.inspect+
+          +product.errors.full_messages.inspect
+        return redirect_to action: "index"
       end
     end
-
 
     #
     # Insert random products
@@ -125,7 +128,9 @@ class ProductsController < ApplicationController
       )
 
       if !product.save()
-        flash[:danger] = "Could not generate products: "+product.errors.messages.inspect+product.errors.full_messages.inspect
+        flash[:danger] = "Could not generate products: "+
+          +product.errors.messages.inspect+
+          +product.errors.full_messages.inspect
         return redirect_to action: "index"
       end
     }

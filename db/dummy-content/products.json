@@ -39,6 +39,13 @@
       "description": "Product works and looks like new. Backed by the 90-day Amazon Renewed Guarantee",
       "price": "258.00`",
       "category_id": 303
+    },
+
+    {
+      "name": "Logitech MK270 Wireless Keyboard",
+      "description": "Logitech MK270 Wireless Keyboard and Mouse Combo - Keyboard and Mouse Included, Long Battery Life",
+      "price": "24.99`",
+      "category_id": 202
     }
 
   ]
