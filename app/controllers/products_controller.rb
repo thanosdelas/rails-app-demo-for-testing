@@ -23,6 +23,15 @@ class ProductsController < ApplicationController
     @products = Product.products
     @product_categories = ProductCategory.all()
 
+    if(request.headers["Content-Type"].to_s.include? "json" || true)
+      response.headers['Content-Type'] = 'application/json'
+      return self.json(@products)
+    end
+
+    # return render plain: request.headers["Content-Type"]
+    # return render plain: request.headers.inspect
+    # return self.json(@products)
+
   end
 
   def api

@@ -2,6 +2,16 @@ class ApplicationController < ActionController::Base
 
   Rails.cache.clear
 
+  # Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  #   allow do
+  #     origins 'example.com'
+
+  #     resource '*',
+  #       headers: :any,
+  #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  #   end
+  # end
+
   def initialize
     super
     # self.response = {}
@@ -25,7 +35,7 @@ class ApplicationController < ActionController::Base
     }
 
     headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS, HEAD, PATCH, CONNECT'
     headers['Access-Control-Request-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     return render json: response
