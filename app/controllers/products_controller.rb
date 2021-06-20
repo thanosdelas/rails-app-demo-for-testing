@@ -23,14 +23,16 @@ class ProductsController < ApplicationController
     @products = Product.products
     @product_categories = ProductCategory.all()
 
+    #
+    # Return json if application/json exists in headers
+    #
     if(request.headers["Content-Type"].to_s.include? "json" || true)
       response.headers['Content-Type'] = 'application/json'
-      return self.json(@products)
+      return self.json({
+        "data": @products,
+        "pagination": @pagination
+      })
     end
-
-    # return render plain: request.headers["Content-Type"]
-    # return render plain: request.headers.inspect
-    # return self.json(@products)
 
   end
 
