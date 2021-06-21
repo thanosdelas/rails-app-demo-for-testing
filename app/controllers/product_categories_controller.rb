@@ -15,6 +15,14 @@ class ProductCategoriesController < ApplicationController
 
     @product_categories_nested = parse_categories(@product_categories)
 
+    #
+    # Return json if application/json exists in headers
+    #
+    if(request.headers["Content-Type"].to_s.include? "json" || true)
+      response.headers['Content-Type'] = 'application/json'
+      return self.json(@product_categories_nested)
+    end
+
     # return render plain: @product_categories_to_html.inspect
     # return parse_categories(@product_categories)
   end
